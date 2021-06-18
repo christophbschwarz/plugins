@@ -54,15 +54,22 @@ public class MediaRecorderBuilder {
     // You can find the specifics here: https://developer.android.com/reference/android/media/MediaRecorder.
     if (enableAudio) mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
     mediaRecorder.setVideoSource(MediaRecorder.VideoSource.SURFACE);
-    mediaRecorder.setOutputFormat(recordingProfile.fileFormat);
+    // mediaRecorder.setOutputFormat(recordingProfile.fileFormat);
+    mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
     if (enableAudio) {
-      mediaRecorder.setAudioEncoder(recordingProfile.audioCodec);
-      mediaRecorder.setAudioEncodingBitRate(recordingProfile.audioBitRate);
-      mediaRecorder.setAudioSamplingRate(recordingProfile.audioSampleRate);
+      // mediaRecorder.setAudioEncoder(recordingProfile.audioCodec);
+      mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+      // mediaRecorder.setAudioEncodingBitRate(recordingProfile.audioBitRate);
+      mediaRecorder.setAudioEncodingBitRate(64000);
+      // mediaRecorder.setAudioSamplingRate(recordingProfile.audioSampleRate);
+      mediaRecorder.setAudioSamplingRate(44100);
     }
-    mediaRecorder.setVideoEncoder(recordingProfile.videoCodec);
-    mediaRecorder.setVideoEncodingBitRate(recordingProfile.videoBitRate);
-    mediaRecorder.setVideoFrameRate(recordingProfile.videoFrameRate);
+    // mediaRecorder.setVideoEncoder(recordingProfile.videoCodec);
+    mediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
+    // mediaRecorder.setVideoEncodingBitRate(recordingProfile.videoBitRate);
+    mediaRecorder.setVideoEncodingBitRate(5000000);
+    // mediaRecorder.setVideoFrameRate(recordingProfile.videoFrameRate);
+    mediaRecorder.setVideoFrameRate(30);
     mediaRecorder.setVideoSize(recordingProfile.videoFrameWidth, recordingProfile.videoFrameHeight);
     mediaRecorder.setOutputFile(outputFilePath);
     mediaRecorder.setOrientationHint(this.mediaOrientation);
